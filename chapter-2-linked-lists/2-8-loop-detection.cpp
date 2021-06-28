@@ -1,4 +1,4 @@
-//done theory to be understood yet
+//done 
 /* 
  * Cracking the coding interview edition 6
  * Problem 2-8-Loop Detection : Given a circular linked list, implement an algorithm that returns the node at the beginning of the loop.
