@@ -1,3 +1,4 @@
+//done
 /* 
  * Cracking the coding interview edition 6
  * Problem 2-1 : Write code to remove duplicates from an unsorted linked list.

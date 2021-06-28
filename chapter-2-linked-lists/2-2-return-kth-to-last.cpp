@@ -1,3 +1,14 @@
+//done 
+/* 
+ * Cracking the coding interview edition 6
+ * Problem 2-2-Return Kth to Last : Implement an algorithm to find the kth to last element of a singly linked list.
+ * Approach 1 : By finding the length of list.
+ * 				Space complexity O(1) & Time complexity O(n)
+ * Approach 2: Using recursive solution
+ *             Space complexity O(n) & Time complexity O(n)
+ * Approach 3: Iterative method using two pointers
+ *             Space complexity O(1) & Time Complexity O(n)
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -58,14 +69,15 @@ class LinkedList
     
 
     //by finding the length of the list
-    void solution1(int k){
+    void kth_to_last1(int k){
+        if(head==NULL) return;
         Node* ptr=head;
         int count=0;
         while(ptr!=NULL){
             count++;
             ptr=ptr->next;
         }
-        k;
+        
         count=count-k;
         ptr=head;
         while(count--){
@@ -76,35 +88,43 @@ class LinkedList
 
     }
 
-    //by using a stack
 
-    void solution2(int k){
-        stack<Node*> s;
-        Node* ptr=head;
-        while(ptr!=NULL){
-            s.push(ptr);
-            ptr=ptr->next;
-        }
-        k--;
-        while(k--){
-            s.pop();
-        }
-        cout<<s.top()->data<<endl;
-    }
 
     //using recursive solution
-    int solution3(int k,Node* temp){
+    int kth_to_last2(int k,Node* temp){
         if(temp==NULL){
             return 0;
         }
-        int index=solution3(k,temp->next)+1;
+        int index=kth_to_last2(k,temp->next) +1;
+        
         if(index==k){
             cout<<temp->data;
         }
+        cout<<endl;
         return index;
+        
 
     }
     
+    //iterative way using two pointers
+    int kth_to_last3(int k){
+        if(head==NULL){
+            return 0;
+        }
+        Node* ptr= head;
+        Node* ptr2=head;
+        int i=k;
+        while(i--){
+            ptr2=ptr2->next;
+
+        }
+        while(ptr2!=NULL){
+            ptr=ptr->next;
+            ptr2=ptr2->next;
+        }
+        cout<<ptr->data<<endl;
+
+    }
 };
 
 int main(){
@@ -112,7 +132,7 @@ int main(){
     int ch;
     
     do{
-        cout<<"MENU \n1.Create list \n2.Display \n3.Kth last using method 1 \n4.Kth last using method 2 \n0.Exit \n";
+        cout<<"MENU \n1.Create list \n2.Display \n3.Kth last (length of list) \n4.Kth last (recursive) \n5.Kth to last (iterative) \n0.Exit \n";
         cin>>ch;
         switch(ch){
             case 1:{
@@ -138,14 +158,15 @@ int main(){
                 int k;
                 cout<<"Enter the value of k"<<endl;
                 cin>>k;
-                ll.solution1(k);
+                ll.kth_to_last1(k);
                 break;
             }
             case 4:{
                 int k;
                 cout<<"Enter the value of k"<<endl;
                 cin>>k;
-                ll.solution2(k);
+                
+                ll.kth_to_last2(k,ll.head);
                 break;
             }
 
@@ -153,9 +174,11 @@ int main(){
                 int k;
                 cout<<"Enter the value of k"<<endl;
                 cin>>k;
-                ll.solution3(k,ll.head);
+                ll.kth_to_last3(k);
                 break;
             }
+
+          
         }
     }while(ch!=0);
     return 0;

@@ -1,9 +1,11 @@
+//done
 /* 
  * Cracking the coding interview edition 6
  * Problem 2-3 : Implement an algorithm to delete a node in the middle of a singly linked list, given only access to that node.
  * Approach : Since we do not have the access to head node, we will copy the content of the node next to the node to be deleted.
  *            Then we will delete the next node.
  * 			  Space complexity O(1) & time complexity O(1)
+ * Assumption here is that we will not be given the last node for deletion.
 
 */
 
@@ -71,7 +73,7 @@ class LinkedList
     }
 
     //method to delete node
-    void solution1(Node* node){
+    void delete_middle_node(Node* node){
         if(node==NULL || node->next==NULL){
             return;
         }
@@ -122,7 +124,7 @@ int main(){
             case 3:{
                 Node* temp=ll.generateNode();
 
-                ll.solution1(temp);
+                ll.delete_middle_node(temp);
                 break;
             }
            
